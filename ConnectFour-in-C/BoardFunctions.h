@@ -6,11 +6,11 @@ typedef enum tag_Bool
 	True
 }Bool;
 
-typedef enum tag_Turn
+typedef enum tag_Player
 {
 	Player_1,
 	Player_2
-}Turn;
+}Player;
 
 typedef enum tag_Piece
 {
@@ -23,9 +23,15 @@ typedef struct tag_Node
 {
 	Bool is_filled;
 	Piece piece;
+	int row;
+	int column;
 }Node;
 
 typedef Node*(*fp_fill)(Node* node,Bool is_filled, Piece piece);
+typedef void(*fp_loop)(Node* node);
 
-Node* fill_node(Node* node,Bool is_filled, Piece piece);
-void draw_board(Node board[6][7],fp_fill func_pointer);
+void check_column(Player player, Node board[6][7], int col);
+Node* fill_node(Node* node, Bool is_filled, Piece piece);
+void loop_through_board(Node board[6][7],fp_loop loop_pointer);
+void starting_board(Node* node);
+void updated_board(Node* node);
