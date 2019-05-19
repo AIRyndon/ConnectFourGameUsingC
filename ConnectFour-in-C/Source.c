@@ -6,10 +6,11 @@ int main(void)
 	printf("This is a Connect 4 game! To win, you must fill either a row,\na column, or a diagonal with your piece.\n\n");
 	
 	Node board[6][7];
-	draw_board(board);
+	draw_board(board,fill_node);
 
 	int turns = 0;
 	int winner = 0;
+	//Turn player_turn = Player_1;
 
 	while (!winner && turns < 42)
 	{
