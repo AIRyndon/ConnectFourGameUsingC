@@ -19,4 +19,4 @@ typedef struct tag_Node
 	Piece piece;
 }Node;
 
-void draw_board(void);
+void draw_board(Node board[6][7]);
