@@ -1,1 +1,1 @@
-# ConnectFourGameUsingC
+# ConnectFour Game Using C
