@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include "Structures.h"
 
-//typedef int(*fp_check)(Node board[6][7],Node* node);
-//typedef Node*(*fp_fill)(Node* node,Bool is_filled, Piece piece);
 typedef void(*fp_loop)(Node* node);
 
 int check_winner(Node board[6][7], Node* node);

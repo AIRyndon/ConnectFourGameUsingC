@@ -22,16 +22,3 @@ int check_downward(Node board[6][7], Node* node, int count)
 
 	return count;
 };
-
-int check_upward(Node board[6][7], Node* node, int count)
-{
-	Node* row_up = &board[node->row - 1][node->column];
-
-	if ((node->piece == row_up->piece) && (node->row > 0 && count < 3))
-	{
-		++count;
-		return check_upward(board, row_up, count);
-	}
-
-	return count;
-};
