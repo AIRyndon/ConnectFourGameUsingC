@@ -21,9 +21,30 @@
     <ClCompile Include="BoardFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RowChecker.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColumnChecker.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiagonalChecker.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RowChecker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnChecker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiagonalChecker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -142,10 +142,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoardFunctions.c" />
+    <ClCompile Include="ColumnChecker.c" />
+    <ClCompile Include="DiagonalChecker.c" />
+    <ClCompile Include="RowChecker.c" />
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardFunctions.h" />
+    <ClInclude Include="ColumnChecker.h" />
+    <ClInclude Include="DiagonalChecker.h" />
+    <ClInclude Include="RowChecker.h" />
+    <ClInclude Include="Structures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
