@@ -10,16 +10,25 @@ int main(void)
 
 	int turns = 0;
 	int winner = 0;
-	Player player_turn = Player_1;
+	PlayerTurn player_turn = Player_1;
 
 	while (!winner && turns < 42)
 	{
+		++turns;
 		int drop_spot = 0;
+		Node* node = 0;
 		printf("What column do you want to drop your piece? ");
 		scanf("%i", &drop_spot);
 
-		check_column(player_turn, board, drop_spot);
+		node = update_board_state(player_turn, board, drop_spot);
 		loop_through_board(board, updated_board);
+
+		player_turn = !player_turn;
+
+		if (!winner && turns > 6)
+		{
+			winner = check_winner(board, node);
+		}
 	}
 
 	return 0;
