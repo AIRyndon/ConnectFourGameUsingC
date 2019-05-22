@@ -94,4 +94,3 @@ Node* update_board_state(PlayerTurn player, Node board[6][7], int col)
 	}
 	return node;
 }
-

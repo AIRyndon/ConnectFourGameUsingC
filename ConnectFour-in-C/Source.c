@@ -8,7 +8,7 @@
 int main(void)
 {
 	printf("This is a Connect 4 game! To win, you must fill either a row,\na column, or a diagonal with your piece.\n\n");
-	
+
 	Node board[6][7];
 	loop_through_board(board, draw_starting_board);
 
@@ -21,12 +21,12 @@ int main(void)
 		++turns;
 		int drop_spot = 0;
 		Node* node = 0;
-		printf("\nWhat column do you want to drop your piece on (0-6)?");
+		printf("\nWhat column do you want to drop your piece on Player %i (0-6)?", player_turn ? 2 : 1);
 		scanf("%i", &drop_spot);
 		system("cls");
 
 		printf("Here is the current board state.\n\n");
-		
+
 		node = update_board_state(player_turn, board, drop_spot);
 		loop_through_board(board, draw_updated_board);
 
@@ -38,7 +38,7 @@ int main(void)
 		if (!winner)
 		{
 			player_turn = !player_turn;
-		}		
+		}
 	}
 
 	if (winner)
@@ -49,6 +49,6 @@ int main(void)
 	{
 		printf("\n\nNo one won this game!!\n");
 	}
-	
+
 	return 0;
 }
