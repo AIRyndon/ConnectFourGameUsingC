@@ -14,6 +14,21 @@ int check_column(Node board[6][7], Node* node)
 	return count;
 }
 
+int check_diagonal(Node board[6][7], Node* node)
+{
+	int fwdslash_up = 0;
+	int fwdslash_down = 0;
+
+	fwdslash_up = check_fwdslash_up(board, node, fwdslash_up);
+
+	if (fwdslash_up < 4)
+	{
+		fwdslash_down = check_fwdslash_down(board, node, fwdslash_down);
+	}
+
+	return fwdslash_up + fwdslash_down;
+}
+
 int check_downward(Node board[6][7], Node* node, int count)
 {
 	Node* row_down = &board[node->row + 1][node->column];
@@ -26,16 +41,41 @@ int check_downward(Node board[6][7], Node* node, int count)
 	return 1;
 };
 
-int check_left(Node board[6][7], Node* node, int count)
+int check_fwdslash_down(Node board[6][7], Node* node, int count)
 {
-	Node* row_left = &board[node->row][node->column - 1];
+	Node* diag_down = &board[node->row + 1][node->column - 1];
 
-	if ((node->piece == row_left->piece) && (node->column > 0 && count < 4))
+	if ((node->piece == diag_down->piece) && (node->row < 5 && node->column > 0) && count < 4)
 	{
-		return count + check_left(board, row_left, count + 1);
+		return count + check_left(board, diag_down, count + 1);
 	}
 
 	return 1;
+}
+
+int check_fwdslash_up(Node board[6][7], Node* node, int count)
+{
+	Node* diag_up = &board[node->row - 1][node->column + 1];
+
+	if ((node->piece == diag_up->piece) && (node->row > 0 && node->column < 6) && count < 4)
+	{
+		return count + check_left(board, diag_up, count + 1);
+	}
+
+	return 1;
+}
+
+int check_left(Node board[6][7], Node* node, int count)
+{
+	Node* column_left = &board[node->row][node->column - 1];
+
+ 	if ((node->piece == column_left->piece) && (node->column > 0 && count < 4))
+	{
+		++count;
+		return check_left(board, column_left, count);
+	}
+
+	return count;
 }
 
 int check_lines(Node board[6][7], Node* node, fp_check check_pointer)
@@ -53,29 +93,31 @@ int check_lines(Node board[6][7], Node* node, fp_check check_pointer)
 
 int check_right(Node board[6][7], Node* node, int count)
 {
-	Node* row_right = &board[node->row][node->column + 1];
+	Node* column_right = &board[node->row][node->column + 1];
 
-	if ((node->piece == row_right->piece) && (node->column < 6 && count < 4))
+	if ((node->piece == column_right->piece) && (node->column < 6 && count < 4))
 	{
-		return count + check_right(board, row_right, count + 1);
+		++count;
+		return check_right(board, column_right, count + 1);
 	}
 
-	return 1;
+	return count;
 }
 
 int check_row(Node board[6][7], Node* node)
 {
 	int count_left = 0;
 	int count_right = 0;
+	int last_dropped = 1;
 
 	count_left = check_left(board, node, count_left);
 
-	if (count_left < 4)
+	if (count_left < 3)
 	{
 		count_right = check_right(board, node, count_right);
 	}
 
-	return count_left + count_right;
+	return last_dropped + count_left + count_right;
 }
 
 int check_upward(Node board[6][7], Node* node, int count)
@@ -92,16 +134,20 @@ int check_upward(Node board[6][7], Node* node, int count)
 
 int check_winner(Node board[6][7], Node* node)
 {
-	int same_pieces = 0;
+	int connect_four = 0;
 	int game_won = 0;
 
-	same_pieces = check_column(board, node);
+	connect_four = check_column(board, node);
 
-	if (same_pieces < 4)
+	if (connect_four < 4)
 	{
-		same_pieces = check_row(board, node);
+		connect_four = check_row(board, node);
 	}
 
+	if (connect_four < 4)
+	{
+		connect_four = check_diagonal(board, node);
+	}
 
 	return game_won;
 }

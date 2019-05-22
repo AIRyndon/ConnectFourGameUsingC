@@ -32,7 +32,10 @@ typedef Node*(*fp_fill)(Node* node,Bool is_filled, Piece piece);
 typedef void(*fp_loop)(Node* node);
 
 int check_column(Node board[6][7], Node* node);
+int check_diagonal(Node board[6][7], Node* node);
 int check_downward(Node board[6][7], Node* node, int count);
+int check_fwdslash_down(Node board[6][7], Node* node, int count);
+int check_fwdslash_up(Node board[6][7], Node* node, int count);
 int check_left(Node board[6][7], Node* node, int count);
 int check_lines(Node board[6][7], Node* node, fp_check check_pointer);
 int check_row(Node board[6][7], Node* node);
