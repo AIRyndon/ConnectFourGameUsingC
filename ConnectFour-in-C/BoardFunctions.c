@@ -3,15 +3,11 @@
 int check_column(Node board[6][7], Node* node)
 {
 	int count = 0;
+	int last_dropped = 1;
 
 	count = check_downward(board, node, count);
 
-	if (count < 4)
-	{
-		count = check_upward(board, node, count);
-	}
-
-	return count;
+	return last_dropped + count;
 }
 
 int check_diagonal(Node board[6][7], Node* node)
@@ -35,10 +31,11 @@ int check_downward(Node board[6][7], Node* node, int count)
 
 	if ((node->piece == row_down->piece) && (node->row < 5 && count < 4))
 	{
-		return count + check_downward(board, row_down, count + 1);
+		++count;
+		return check_downward(board, row_down, count);
 	}
 
-	return 1;
+	return count;
 };
 
 int check_fwdslash_down(Node board[6][7], Node* node, int count)
